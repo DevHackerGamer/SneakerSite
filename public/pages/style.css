@@ -4,11 +4,19 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  text-align: center;
+  text-align: left;
   background: #f2f2f2;
   margin: 0;
   padding: 0;
 }
+
+.container { max-width: 500px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);}
+h1 { text-align: left; color: #333; }
+label {display: block; margin-top: 15px; color: #555; }
+input, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; }
+button { margin-top: 20px; width: 100%; padding: 12px; background: purple; color: #fff; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
+button:hover { background: #CBC3E3; }
+
 
 nav {
   background: #111;
@@ -96,6 +104,10 @@ header {
 .product h2 {
   font-size: 1.2rem;
   margin: 10px 0 5px;
+}
+
+footer{
+  text-align: center;
 }
 
 .product p {
