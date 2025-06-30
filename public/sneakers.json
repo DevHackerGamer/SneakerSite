@@ -1,0 +1,95 @@
+[
+  {
+    "id": 101,
+    "name": "Air Max 90",
+    "price": 120,
+    "image": "images/airmax90.png",
+    "special": true
+  },
+  {
+    "id": 102,
+    "name": "Yeezy Boost",
+    "price": 220,
+    "image": "images/yeezy.png",
+    "special": true
+  },
+  {
+    "id": 103,
+    "name": "Jordan 1 Retro",
+    "price": 180,
+    "image": "images/jordan1.png"
+  },
+  {
+    "id": 104,
+    "name": "Adidas UltraBoost",
+    "price": 200,
+    "image": "images/ultraboost.png"
+  },
+  {
+    "id": 105,
+    "name": "Nike Dunk Low",
+    "price": 110,
+    "image": "images/dunklow.png"
+  },
+  {
+    "id": 106,
+    "name": "Puma RS-X",
+    "price": 100,
+    "image": "images/rsx.png"
+  },
+  {
+    "id": 107,
+    "name": "New Balance 550",
+    "price": 130,
+    "image": "images/nb550.png"
+  },
+  {
+    "id": 108,
+    "name": "Converse Run Star",
+    "price": 90,
+    "image": "images/runstar.png"
+  },
+  {
+    "id": 109,
+    "name": "Reebok Classic Leather",
+    "price": 95,
+    "image": "images/reebokclassic.png"
+  },
+  {
+    "id": 110,
+    "name": "Fila Disruptor II",
+    "price": 85,
+    "image": "images/fila.png"
+  },
+  {
+    "id": 111,
+    "name": "Nike Air Force 1",
+    "price": 125,
+    "image": "images/airforce1.png"
+  },
+  {
+    "id": 112,
+    "name": "Asics Gel-Lyte III",
+    "price": 105,
+    "image": "images/asics.png"
+  },
+  {
+    "id": 113,
+    "name": "Vans Old Skool",
+    "price": 75,
+    "image": "images/vans.png",
+    "special": true
+  },
+  {
+    "id": 114,
+    "name": "Under Armour HOVR",
+    "price": 140,
+    "image": "images/hovr.png"
+  },
+  {
+    "id": 115,
+    "name": "Saucony Jazz Original",
+    "price": 98,
+    "image": "images/saucony.png"
+  }
+]

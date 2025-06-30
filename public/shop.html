@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shop - Big Dawg Sneakers</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="nav-container">
+      <h2 class="logo">Big Dawg Sneakers</h2>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <h1>Shop Sneakers</h1>
+    <div id="product-list" class="products-row"></div>
+  </main>
+
+  <div id="cart-icon">
+    <i class="fa-solid fa-cart-shopping"></i>
+    <span id="cart-count">0</span>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Big Dawg Sneakers. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Fetch products and render product cards
+    fetch('sneakers.json')
+      .then(res => res.json())
+      .then(products => {
+        const container = document.getElementById('product-list');
+
+        products.forEach(product => {
+          const card = document.createElement('div');
+          card.className = 'product-card';
+
+          card.innerHTML = `
+            <img src="images/${product.image}" alt="${product.name}" />
+            <h3>${product.name}</h3>
+            <p>R${product.price.toFixed(2)}</p>
+          `;
+
+          const button = document.createElement('button');
+          button.textContent = 'Add to Cart';
+          button.addEventListener('click', () => addToCart(product));
+
+          card.appendChild(button);
+          container.appendChild(card);
+        });
+      });
+
+    // Add product to cart in localStorage with qty
+    function addToCart(product) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      const index = cart.findIndex(item => item.id === product.id);
+      if (index !== -1) {
+        cart[index].qty += 1;
+      } else {
+        cart.push({ ...product, qty: 1 });
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${product.name} added to cart!`);
+    }
+  </script>
+
+</body>
+</html>

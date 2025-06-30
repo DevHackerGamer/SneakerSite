@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout - Big Dawg Sneakers</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <h2 class="logo">Big Dawg Sneakers</h2>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main style="padding: 20px;">
+    <h1>Checkout</h1>
+    <form id="checkout-form">
+      <fieldset>
+        <legend>Buyer Information</legend>
+        <label>Full Name: <input type="text" name="fullName" required /></label><br>
+        <label>Email: <input type="email" name="email" required /></label><br>
+        <label>Phone: <input type="tel" name="phone" required /></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Delivery Address</legend>
+        <button type="button" onclick="fillLocation()">Use My Current Location</button><br><br>
+        <label>Street: <input type="text" id="street" name="street" required /></label><br>
+        <label>City: <input type="text" id="city" name="city" required /></label><br>
+        <label>Zip Code: <input type="text" id="zip" name="zip" required /></label>
+      </fieldset>
+
+      <div id="checkout-summary">
+        <h3>Total: <span id="checkout-total">$0.00</span></h3>
+      </div>
+
+      <button type="submit">Place Order & Pay with PayFast</button>
+    </form>
+  </main>
+
+  <footer>
+    &copy; 2025 Big Dawg Sneakers. All rights reserved.
+  </footer>
+
+  <script src="checkout.js"></script>
+</body>
+</html>
