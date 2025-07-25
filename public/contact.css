@@ -1,0 +1,28 @@
+/* Toast styles */
+.toast {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #2ecc71;
+  color: white;
+  text-align: center;
+  border-radius: 8px;
+  padding: 12px 16px;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  font-size: 15px;
+  transition: opacity 0.4s ease, bottom 0.4s ease;
+  opacity: 0;
+}
+
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+  bottom: 50px;
+}
+
+.toast.error {
+  background-color: #e74c3c;
+}

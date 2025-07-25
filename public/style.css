@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-
 body {
   font-family: 'Inter', sans-serif;
   background: #f2f2f2;
@@ -299,3 +298,213 @@ footer {
     align-items: flex-start;
   }
 }
+
+
+
+#toast-container {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.toast {
+  background: linear-gradient(135deg, #4CAF50, #388E3C); /* green gradient */
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 999px;
+  margin-top: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInOut 3s ease forwards;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+
+/* Cart-specific toast */
+.cart-toast {
+  background: linear-gradient(135deg, #4CAF50, #388E3C); /* default green */
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 999px;
+  margin: 10px auto 0;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInOut 3s ease forwards;
+  max-width: 300px;
+  text-align: center;
+}
+
+.cart-toast.warning {
+  background: linear-gradient(135deg, #f44336, #d32f2f); /* red warning */
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+
+/* Confirm Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+}
+
+.modal-box {
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+}
+
+.modal-box p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.modal-buttons button {
+  margin: 0 10px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+}
+
+#confirm-yes {
+  background: #d32f2f;
+  color: white;
+}
+
+#confirm-cancel {
+  background: #ccc;
+}
+
+/* Cart table */
+
+    #cart-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    #cart-table thead {
+      background-color: #f8f8f8;
+    }
+
+    #cart-table th,
+    #cart-table td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    .item-col .item-name {
+      font-weight: 600;
+      font-size: 15px;
+      color: #333;
+    }
+
+    .price-col,
+    .subtotal-col {
+      color: #444;
+      font-weight: 500;
+    }
+
+    .qty-col input[type="number"] {
+      width: 60px;
+      padding: 6px 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    .remove-btn {
+      background-color: transparent;
+      color: crimson;
+      font-size: 18px;
+      border: none;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .remove-btn:hover {
+      color: darkred;
+    }
+
+    .total {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+
+    .cart-actions button {
+      padding: 10px 16px;
+      margin-right: 10px;
+      background-color: black;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .cart-actions button:hover {
+      background-color: #333;
+    }
+

@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Shop - Big Dawg Sneakers</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Font Awesome for cart icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
 
   <nav>
     <div class="nav-container">
-      <h2 class="logo">Big Dawg Sneakers</h2>
+      <a href="index.html"><h2 class="logo">Big Dawg Sneakers</h2></a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="shop.html">Shop</a></li>
@@ -25,55 +27,76 @@
     <div id="product-list" class="products-row"></div>
   </main>
 
-  <div id="cart-icon">
+  <a href="cart.html" id="cart-icon">
     <i class="fa-solid fa-cart-shopping"></i>
     <span id="cart-count">0</span>
-  </div>
+  </a>
 
   <footer>
     <p>&copy; 2025 Big Dawg Sneakers. All rights reserved.</p>
   </footer>
 
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Cart utils to update cart count badge -->
+  <script src="cart-utils.js"></script>
+
   <script>
-    // Fetch products and render product cards
-    fetch('sneakers.json')
-      .then(res => res.json())
-      .then(products => {
-        const container = document.getElementById('product-list');
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch('sneakers.json')
+        .then(res => res.json())
+        .then(products => {
+          const container = document.getElementById('product-list');
 
-        products.forEach(product => {
-          const card = document.createElement('div');
-          card.className = 'product-card';
+          products.forEach(product => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
 
-          card.innerHTML = `
-            <img src="images/${product.image}" alt="${product.name}" />
-            <h3>${product.name}</h3>
-            <p>R${product.price.toFixed(2)}</p>
-          `;
+            card.innerHTML = `
+              <img src="${product.image}" alt="${product.name}" />
+              <h3>${product.name}</h3>
+              <p>R${product.price.toFixed(2)}</p>
+            `;
 
-          const button = document.createElement('button');
-          button.textContent = 'Add to Cart';
-          button.addEventListener('click', () => addToCart(product));
+            const button = document.createElement('button');
+            button.textContent = 'Add to Cart';
+            button.addEventListener('click', () => {
+              addToCart(product);
+            });
 
-          card.appendChild(button);
-          container.appendChild(card);
+            card.appendChild(button);
+            container.appendChild(card);
+          });
         });
-      });
 
-    // Add product to cart in localStorage with qty
-    function addToCart(product) {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      function addToCart(product) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-      const index = cart.findIndex(item => item.id === product.id);
-      if (index !== -1) {
-        cart[index].qty += 1;
-      } else {
-        cart.push({ ...product, qty: 1 });
+        const index = cart.findIndex(item => item.id === product.id);
+        if (index !== -1) {
+          cart[index].qty += 1;
+        } else {
+          cart.push({ ...product, qty: 1 });
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        showToast(`${product.name} added to cart!`);
+        updateCartCount();
       }
 
-      localStorage.setItem('cart', JSON.stringify(cart));
-      alert(`${product.name} added to cart!`);
-    }
+      function showToast(message) {
+        const container = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.textContent = message;
+        container.appendChild(toast);
+
+        setTimeout(() => {
+          toast.remove();
+        }, 3000);
+      }
+    });
   </script>
 
 </body>

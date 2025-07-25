@@ -5,7 +5,7 @@ function calculateTotal(cart) {
   return cart.reduce((sum, item) => sum + item.price * item.qty, 0).toFixed(2);
 }
 
-document.getElementById("checkout-total").textContent = `$${calculateTotal(cart)}`;
+document.getElementById("checkout-total").textContent = `R${calculateTotal(cart)}`;
 
 // Handle form submission and send to PayFast
 document.getElementById("checkout-form").addEventListener("submit", function (e) {

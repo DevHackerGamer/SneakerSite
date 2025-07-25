@@ -20,6 +20,25 @@
 
 // Modified this to run app and email reciept services on the same port
 
+// setting up db for orders storage
+const mysql = require('mysql2');
+
+const db = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
+});
+
+db.connect((err) => {
+  if (err) {
+    console.error("[MySQL] Connection failed:", err.message);
+  } else {
+    console.log("[MySQL] Connected to database.");
+  }
+});
+
+
 console.log("[Server] starting...");
 require("dotenv").config();
 const express = require("express");
@@ -48,7 +67,7 @@ app.post("/send-confirmation", async (req, res) => {
 
   const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0).toFixed(2);
   const items = cart.map(item =>
-    `${item.qty} x ${item.name} - $${item.price.toFixed(2)} = $${(item.qty * item.price).toFixed(2)}`
+    `${item.qty} x ${item.name} - R${item.price.toFixed(2)} = R${(item.qty * item.price).toFixed(2)}`
   ).join("\n");
 
   const message = `
@@ -63,13 +82,37 @@ Delivery Address: ${street}, ${city}, ${zip}
 Items:
 ${items}
 
-Total: $${total}
+Total: R${total}
 
 We'll let you know once your order is on the way!
 
 Cheers,
 Big Dawg Sneakers Team
   `;
+// Save to MySQL
+  const insertQuery = `
+    INSERT INTO orders (full_name, email, phone, street, city, zip, cart, total)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+  `;
+
+  const values = [
+    fullName,
+    email,
+    phone,
+    street,
+    city,
+    zip,
+    JSON.stringify(cart), // store cart as JSON string
+    total
+  ];
+
+  db.query(insertQuery, values, (err, result) => {
+    if (err) {
+      console.error("[MySQL] Failed to insert order:", err.message);
+    } else {
+      console.log(`[MySQL] Order saved with ID: ${result.insertId}`);
+    }
+  });
 
   // Configure your email service
   const transporter = nodemailer.createTransport({

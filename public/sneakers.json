@@ -2,94 +2,94 @@
   {
     "id": 101,
     "name": "Air Max 90",
-    "price": 120,
+    "price": 1899,
     "image": "images/airmax90.png",
     "special": true
   },
   {
     "id": 102,
     "name": "Yeezy Boost",
-    "price": 220,
+    "price": 3299,
     "image": "images/yeezy.png",
     "special": true
   },
   {
     "id": 103,
     "name": "Jordan 1 Retro",
-    "price": 180,
+    "price": 2999,
     "image": "images/jordan1.png"
   },
   {
     "id": 104,
     "name": "Adidas UltraBoost",
-    "price": 200,
+    "price": 2599,
     "image": "images/ultraboost.png"
   },
   {
     "id": 105,
     "name": "Nike Dunk Low",
-    "price": 110,
+    "price": 1899,
     "image": "images/dunklow.png"
   },
   {
     "id": 106,
     "name": "Puma RS-X",
-    "price": 100,
+    "price": 1599,
     "image": "images/rsx.png"
   },
   {
     "id": 107,
     "name": "New Balance 550",
-    "price": 130,
+    "price": 1999,
     "image": "images/nb550.png"
   },
   {
     "id": 108,
     "name": "Converse Run Star",
-    "price": 90,
+    "price": 1499,
     "image": "images/runstar.png"
   },
   {
     "id": 109,
     "name": "Reebok Classic Leather",
-    "price": 95,
+    "price": 1399,
     "image": "images/reebokclassic.png"
   },
   {
     "id": 110,
     "name": "Fila Disruptor II",
-    "price": 85,
+    "price": 999,
     "image": "images/fila.png"
   },
   {
     "id": 111,
     "name": "Nike Air Force 1",
-    "price": 125,
+    "price": 1999,
     "image": "images/airforce1.png"
   },
   {
     "id": 112,
     "name": "Asics Gel-Lyte III",
-    "price": 105,
+    "price": 1499,
     "image": "images/asics.png"
   },
   {
     "id": 113,
     "name": "Vans Old Skool",
-    "price": 75,
+    "price": 1199,
     "image": "images/vans.png",
     "special": true
   },
   {
     "id": 114,
     "name": "Under Armour HOVR",
-    "price": 140,
+    "price": 1899,
     "image": "images/hovr.png"
   },
   {
     "id": 115,
     "name": "Saucony Jazz Original",
-    "price": 98,
+    "price": 1299,
     "image": "images/saucony.png"
   }
 ]

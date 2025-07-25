@@ -29,59 +29,74 @@
     <div id="featured-items" class="products-row"></div>
   </main>
 
-  <script>
-    fetch('sneakers.json')
-      .then(res => res.json())
-      .then(data => {
-        const specials = data.filter(item => item.special === true);
-        const container = document.getElementById('featured-items');
-
-        specials.forEach(product => {
-          const card = document.createElement('div');
-          card.className = 'product-card';
-          card.innerHTML = `
-            <img src="${product.image}" alt="${product.name}" />
-            <h3>${product.name}</h3>
-            <p>$${product.price.toFixed(2)}</p>
-          `;
-            const button = document.createElement('button');
-            button.textContent = 'Add to Cart';
-            button.addEventListener('click', () => addToCart(product));
-            card.appendChild(button);
-          container.appendChild(card);
-        });
-      });
-
-    function addToCart(product) {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-      const index = cart.findIndex(item => item.id === product.id);
-
-      if (index !== -1) {
-        cart[index].qty += 1; // Increment quantity if product exists
-      } else {
-        cart.push({ ...product, qty: 1 }); // Add new product with qty = 1
-      }
-
-      localStorage.setItem('cart', JSON.stringify(cart));
-      alert(`${product.name} added to cart!`);
-      updateCartCount(); // optional, if you want to update cart icon count
-    }
-
-    function updateCartCount() {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const count = cart.reduce((sum, item) => sum + item.qty, 0);
-    document.getElementById('cart-count').textContent = count;
-    }
-  </script>
-
-  <div id="cart-icon">
+  <a href="cart.html" id="cart-icon">
     <i class="fa-solid fa-cart-shopping"></i>
     <span id="cart-count">0</span>
-  </div>
+  </a>
 
   <footer>
     <p>&copy; 2025 Big Dawg Sneakers. All rights reserved.</p>
   </footer>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Cart utils to keep cart count updated -->
+  <script src="cart-utils.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch('sneakers.json')
+        .then(res => res.json())
+        .then(data => {
+          const specials = data.filter(item => item.special === true);
+          const container = document.getElementById('featured-items');
+
+          specials.forEach(product => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+              <img src="${product.image}" alt="${product.name}" />
+              <h3>${product.name}</h3>
+              <p>R${product.price.toFixed(2)}</p>
+            `;
+            const button = document.createElement('button');
+            button.textContent = 'Add to Cart';
+            button.addEventListener('click', () => addToCart(product));
+            card.appendChild(button);
+            container.appendChild(card);
+          });
+        });
+
+      function addToCart(product) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        const index = cart.findIndex(item => item.id === product.id);
+
+        if (index !== -1) {
+          cart[index].qty += 1;
+        } else {
+          cart.push({ ...product, qty: 1 });
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        showToast(`${product.name} added to cart!`);
+        updateCartCount();
+      }
+
+      function showToast(message) {
+        const container = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.textContent = message;
+        container.appendChild(toast);
+
+        setTimeout(() => {
+          toast.remove();
+        }, 3000);
+      }
+    });
+  </script>
+
 </body>
 </html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 50px;
+      background: #f9f9f9;
+    }
+    .thank-you {
+      background: white;
+      padding: 40px;
+      border: 1px solid #ccc;
+      display: inline-block;
+    }
+    .thank-you h1 {
+      color: green;
+    }
+    a {
+      margin-top: 20px;
+      display: inline-block;
+      text-decoration: none;
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+  <div class="thank-you">
+    <h1>Thank You, <span id="customer-name"></span>!</h1>
+    <p>Your receipt has been sent to your email.</p>
+    <a href="index.html">Return to Home</a>
+  </div>
+
+  <script>
+    const name = localStorage.getItem("recentCustomerName") || "Customer";
+    document.getElementById("customer-name").textContent = name;
+  </script>
+</body>
+</html>

@@ -4,37 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Order Confirmation</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    .receipt {
-      max-width: 600px;
-      margin: auto;
-      padding: 20px;
-      background: white;
-      border: 1px solid #ccc;
-    }
-    .receipt h2 {
-      text-align: center;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-    }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: left;
-    }
-    .send-email-btn {
-      margin-top: 20px;
-      display: flex;
-      justify-content: center;
-    }
-    .send-email-btn button {
-      padding: 10px 20px;
-    }
-  </style>
+  <link rel="stylesheet" href="confirmation.css" />
 </head>
 <body>
   <main class="receipt">
@@ -63,60 +33,14 @@
     </div>
   </main>
 
-  <script>
-    const order = JSON.parse(localStorage.getItem("lastOrder"));
-    if (!order) {
-      alert("No order data found.");
-      window.location.href = "index.html";
-    }
+  <!-- Loader -->
+  <div id="loader" class="loader-overlay" style="display: none;">
+    <div class="loader-content">
+      <div class="spinner"></div>
+      <p>Sending receipt...</p>
+    </div>
+  </div>
 
-    // Fill buyer info
-    document.getElementById("conf-name").textContent = order.fullName;
-    document.getElementById("conf-email").textContent = order.email;
-    document.getElementById("conf-phone").textContent = order.phone;
-    document.getElementById("conf-address").textContent = `${order.street}, ${order.city}, ${order.zip}`;
-
-    const tbody = document.querySelector("#order-table tbody");
-    let total = 0;
-    order.cart.forEach(item => {
-      const subtotal = item.price * item.qty;
-      total += subtotal;
-
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td>${item.name}</td>
-        <td>${item.qty}</td>
-        <td>$${item.price.toFixed(2)}</td>
-        <td>$${subtotal.toFixed(2)}</td>
-      `;
-      tbody.appendChild(row);
-    });
-
-    document.getElementById("conf-total").textContent = `$${total.toFixed(2)}`;
-
-    document.getElementById("sendEmailBtn").addEventListener("click", async () => {
-      try {
-
-        // This end point I placed it in the same sever.js file for easy containerizing
-        const response = await fetch("/send-confirmation", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(order)
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-          alert("Receipt has been sent to your email!");
-        } else {
-          alert("Failed to send receipt. Please try again later.");
-        }
-      } catch (error) {
-        alert("Error sending receipt: " + error.message);
-      }
-    });
-  </script>
+  <script src="confirmation.js"></script>
 </body>
 </html>
